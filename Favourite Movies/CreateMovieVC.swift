@@ -53,6 +53,7 @@ class CreateMovieVC: UIViewController, UINavigationControllerDelegate, UIImagePi
             
             do{
                 try context.save();
+                print("context.save() executed");
             } catch {
                 print("problem occured while saving movie");
             }
