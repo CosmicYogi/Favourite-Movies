@@ -12,12 +12,12 @@ import UIKit
 
 class Movie: NSManagedObject {
  
-    func setSetMovieImage(movieImage: UIImage){
+    func setSetMovieImage(_ movieImage: UIImage) {
         let imageInDataFormat = UIImagePNGRepresentation(movieImage);
         self.movieImage = imageInDataFormat;
     }
     
-    func getMovieImage() -> UIImage{
-        return UIImage(data: self.movieImage!)!;
+    func getMovieImage() -> UIImage {
+        return UIImage(data: self.movieImage! as Data)
     }
 }

@@ -16,7 +16,7 @@ class MovieCell: UITableViewCell {
     
     @IBOutlet var movieDescription: UILabel!
     
-    func configureCell(movie: Movie){
+    func configureCell(_ movie: Movie){
         self.movieImage.image = movie.getMovieImage();
         self.movieTitle.text = movie.movieName;
         self.movieDescription.text = movie.movieDetails;
@@ -28,7 +28,7 @@ class MovieCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

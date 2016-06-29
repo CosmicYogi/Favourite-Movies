@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class CreateMovieVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CreateMovieVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     //All @IBOutlets are here
     @IBOutlet var movieTitle: UITextField!
@@ -20,36 +20,39 @@ class CreateMovieVC: UIViewController, UINavigationControllerDelegate, UIImagePi
     var imagePicker : UIImagePickerController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieImage.frame = CGRectMake(movieImage.frame.origin.x, movieImage.frame.origin.y, 200, 200);
+        movieImage.frame = CGRect(x: movieImage.frame.origin.x, y: movieImage.frame.origin.y, width: 200, height: 200);
         movieImage.clipsToBounds = true
         imagePicker = UIImagePickerController();
         imagePicker.delegate = self; //You always forget this.
+        movieTitle.delegate = self
+        movieDescription.delegate = self
     }
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        movieImage.image = image;
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        movieImage.image = info[UIImagePickerControllerOriginalImage] as! UIImage
         addImageButton.titleLabel?.text = "Add Another";
-        dismissViewControllerAnimated(true, completion: nil);
-        movieImage.frame = CGRectMake(movieImage.frame.origin.x, movieImage.frame.origin.y, 240.0, 240.0);
-        movieImage.contentMode = .ScaleAspectFill;
+        movieImage.frame = CGRect(x: movieImage.frame.origin.x, y: movieImage.frame.origin.y, width: 240.0, height: 240.0);
+        movieImage.contentMode = .scaleAspectFill;
         movieImage.clipsToBounds = true
+        
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onAddImageButtonDown(sender: AnyObject) {
-        self.presentViewController(imagePicker, animated: true, completion: nil);
+    @IBAction func onAddImageButtonDown(_ sender: AnyObject) {
+        self.present(imagePicker, animated: true, completion: nil);
     }
     
-    @IBAction func onSubmitDown(sender: AnyObject) {
+    @IBAction func onSubmitDown(_ sender: AnyObject) {
         if let title = movieTitle.text where title != ""{
-            let app = UIApplication.sharedApplication().delegate as! AppDelegate;
+            let app = UIApplication.shared().delegate as! AppDelegate;
             let context = app.managedObjectContext;
-            let entity = NSEntityDescription.entityForName("Movie", inManagedObjectContext: context);
-            let  movie = Movie(entity: entity!, insertIntoManagedObjectContext: context);
+            let entity = NSEntityDescription.entity(forEntityName: "Movie", in: context);
+            let  movie = Movie(entity: entity!, insertInto: context);
             movie.movieName = title;
             movie.movieDetails = movieDescription.text;
             movie.setSetMovieImage(movieImage.image!);
             
-            context.insertObject(movie);
+            context.insert(movie);
             
             do{
                 try context.save();
@@ -58,10 +61,20 @@ class CreateMovieVC: UIViewController, UINavigationControllerDelegate, UIImagePi
                 print("problem occured while saving movie");
             }
             //self.navigationController?.popViewControllerAnimated(true); //This only works with navigation controller. because in navigation controlly everything is in stack.
-            self.dismissViewControllerAnimated(true, completion: nil);
+            self.dismiss(animated: true, completion: nil);
         }
         else{
             print("code din't function");
         }
+    }
+    
+    func textViewShouldReturn(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

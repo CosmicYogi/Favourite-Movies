@@ -16,6 +16,6 @@ extension Movie {
 
     @NSManaged var movieName: String?
     @NSManaged var movieDetails: String?
-    @NSManaged var movieImage: NSData?
+    @NSManaged var movieImage: Data?
 
 }
