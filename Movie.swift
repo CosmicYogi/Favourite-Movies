@@ -11,12 +11,13 @@ import CoreData
 import UIKit
 
 class Movie: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
-
-    init(movieName: String,description: String, postImage: UIImage){
-        self.movieName = movieName;
-        self.movieDetails = description;
-        //self.movieImage = postImage;
+ 
+    func setSetMovieImage(movieImage: UIImage){
+        let imageInDataFormat = UIImagePNGRepresentation(movieImage);
+        self.movieImage = imageInDataFormat;
+    }
+    
+    func getMovieImage() -> UIImage{
+        return UIImage(data: self.movieImage!)!;
     }
 }

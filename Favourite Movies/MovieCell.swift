@@ -10,11 +10,18 @@ import UIKit
 
 class MovieCell: UITableViewCell {
 
-    @IBOutlet var movieImage: UIView!
+    @IBOutlet var movieImage: UIImageView!
     
     @IBOutlet var movieTitle: UILabel!
     
     @IBOutlet var movieDescription: UILabel!
+    
+    func configureCell(movie: Movie){
+        self.movieImage.image = movie.getMovieImage();
+        self.movieTitle.text = movie.movieName;
+        self.movieDescription.text = movie.movieDetails;
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

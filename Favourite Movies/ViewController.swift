@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -14,22 +15,48 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet var movieTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        movieTableView.delegate = self;
+        movieTableView.dataSource = self;
+        print(movies);
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(animated: Bool) {
+        fetchAndSaveResults();
+        movieTableView.reloadData();
+    }
+
+    func fetchAndSaveResults(){
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let context = app.managedObjectContext;
+        let fetchRequest = NSFetchRequest(entityName: "Movie");
+        
+        do{
+            let results = try context.executeFetchRequest(fetchRequest);
+            self.movies = results as! [Movie]
+        } catch {
+            print("Exception thrown while fetching data");
+        }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        <#code#>
+        
+        var identifier : String = "movieLight";
+        if let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? MovieCell{
+            let movie = movies[indexPath.row]
+            cell.configureCell(movie)
+            return cell;
+        } else{
+            let cell = MovieCell();
+            cell.configureCell(movies[indexPath.row]);
+            return cell;
+        }
+        
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count;
+        return movies.count;
     }
 }
 

@@ -44,6 +44,9 @@
                                         <state key="normal" title="+">
                                             <color key="titleColor" red="0.66986836230000002" green="1" blue="0.86438477579999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ots-Ut-Abn" kind="show" id="EUc-kX-rJb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15503412510640907" green="0.30729621795304518" blue="0.31079727564102566" alpha="0.93760775862068968" colorSpace="calibratedRGB"/>
@@ -214,10 +217,10 @@
             </objects>
             <point key="canvasLocation" x="305" y="368"/>
         </scene>
-        <!--View Controller-->
+        <!--Create MovieVC-->
         <scene sceneID="DdM-gv-uo8">
             <objects>
-                <viewController id="ots-Ut-Abn" sceneMemberID="viewController">
+                <viewController id="ots-Ut-Abn" customClass="CreateMovieVC" customModule="Favourite_Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qoa-Dv-DAo"/>
                         <viewControllerLayoutGuide type="bottom" id="opG-Gq-PNh"/>
@@ -240,6 +243,9 @@
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="yJR-uH-fhF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1550341251" green="0.30729621800000001" blue="0.31079727559999998" alpha="0.93760775860000001" colorSpace="calibratedRGB"/>
@@ -251,6 +257,11 @@
                                     <constraint firstItem="YIZ-aB-uPV" firstAttribute="leading" secondItem="EJA-ql-MWy" secondAttribute="leading" constant="8" id="vgf-UO-BEG"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Movie Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mhX-4l-oHY">
+                                <rect key="frame" x="237" y="90" width="126" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="I Liked this movie because ..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="inJ-4j-n5N">
                                 <rect key="frame" x="20" y="365" width="560" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -281,21 +292,22 @@
                                 <state key="normal" title="Add Thumbnail">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="0.85377155172413788" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onAddImageButtonDown:" destination="ots-Ut-Abn" eventType="touchUpInside" id="5NR-Kz-ZxC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipi-8V-HAY">
-                                <rect key="frame" x="276" y="527" width="49" height="30"/>
+                                <rect key="frame" x="237" y="527" width="88" height="30"/>
                                 <color key="backgroundColor" red="0.07886231734405709" green="0.079146634615384626" blue="0.077980391244681133" alpha="0.68782327586206893" colorSpace="calibratedRGB"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.8732171474358974" green="0.8732171474358974" blue="0.8732171474358974" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSubmitDown:" destination="ots-Ut-Abn" eventType="touchUpInside" id="y1n-65-I13"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Movie Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mhX-4l-oHY">
-                                <rect key="frame" x="237" y="90" width="126" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -332,6 +344,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="addImageButton" destination="6s7-Id-3kC" id="FIJ-sS-P7a"/>
+                        <outlet property="movieDescription" destination="inJ-4j-n5N" id="bVP-nO-BHs"/>
+                        <outlet property="movieImage" destination="wid-HG-37e" id="4Vy-oN-hbl"/>
+                        <outlet property="movieTitle" destination="mhX-4l-oHY" id="2YL-i3-iIp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5F-B1-Axl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -341,4 +359,7 @@
     <resources>
         <image name="titanic" width="1920" height="1080"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EUc-kX-rJb"/>
+    </inferredMetricsTieBreakers>
 </document>
