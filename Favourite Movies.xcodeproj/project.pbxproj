@@ -15,6 +15,7 @@
 		944ABB731D22C3BB00483A6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944ABB711D22C3BB00483A6D /* LaunchScreen.storyboard */; };
 		944ABB7C1D22C45A00483A6D /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ABB7A1D22C45A00483A6D /* Movie+CoreDataProperties.swift */; };
 		944ABB7D1D22C45A00483A6D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ABB7B1D22C45A00483A6D /* Movie.swift */; };
+		944ABB821D22CC4E00483A6D /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ABB811D22CC4E00483A6D /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		944ABB741D22C3BB00483A6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944ABB7A1D22C45A00483A6D /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Movie+CoreDataProperties.swift"; path = "../Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		944ABB7B1D22C45A00483A6D /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = ../Movie.swift; sourceTree = "<group>"; };
+		944ABB811D22CC4E00483A6D /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				944ABB691D22C3BB00483A6D /* Main.storyboard */,
+				944ABB811D22CC4E00483A6D /* MovieCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			files = (
 				944ABB7C1D22C45A00483A6D /* Movie+CoreDataProperties.swift in Sources */,
 				944ABB6E1D22C3BB00483A6D /* Favourite_Movies.xcdatamodeld in Sources */,
+				944ABB821D22CC4E00483A6D /* MovieCell.swift in Sources */,
 				944ABB681D22C3BB00483A6D /* ViewController.swift in Sources */,
 				944ABB661D22C3BB00483A6D /* AppDelegate.swift in Sources */,
 				944ABB7D1D22C45A00483A6D /* Movie.swift in Sources */,

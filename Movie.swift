@@ -8,10 +8,15 @@
 
 import Foundation
 import CoreData
-
+import UIKit
 
 class Movie: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
+    init(movieName: String,description: String, postImage: UIImage){
+        self.movieName = movieName;
+        self.movieDetails = description;
+        //self.movieImage = postImage;
+    }
 }
